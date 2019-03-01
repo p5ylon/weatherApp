@@ -1,20 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:stretchColumns="1">
 
-    <TextView
-        android:id="@+id/hw_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/hw_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+    <TableRow
+        android:paddingStart="@dimen/table_row_padding_start"
+        android:paddingEnd="@dimen/table_row_padding_end"
+        android:paddingTop="@dimen/table_row_padding_top">
+
+        <TextView
+            android:id="@+id/townTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/town" />
+
+        <TextView
+            android:id="@+id/townNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start_second_row"/>
+    </TableRow>
+
+    <TableRow
+        android:paddingStart="@dimen/table_row_padding_start"
+        android:paddingEnd="@dimen/table_row_padding_end"
+        android:paddingTop="@dimen/table_row_padding_top">
+
+        <TextView
+            android:id="@+id/tempTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperature" />
+
+        <TextView
+            android:id="@+id/tempValueTextView"
+            android:layout_marginStart="@dimen/margin_start_second_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+
+    <TableRow
+        android:paddingStart="@dimen/table_row_padding_start"
+        android:paddingEnd="@dimen/table_row_padding_end"
+        android:paddingTop="@dimen/table_row_padding_top">
+
+        <TextView
+            android:id="@+id/conditionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather_condition" />
+
+        <TextView
+            android:id="@+id/conditionValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start_second_row"/>
+    </TableRow>
+
+
+</TableLayout>

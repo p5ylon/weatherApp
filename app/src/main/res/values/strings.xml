@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-    <string name="hw_text">Weather</string>
+    <string name="town">Town:</string>
+    <string name="weather_condition">Condition:</string>
+    <string name="temperature">Temperature:</string>
+
+    <string name="moscow">Moscow</string>
+    <string name="cloudy">Cloudy</string>
 </resources>

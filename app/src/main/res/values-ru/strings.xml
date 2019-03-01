@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Приложение Погода</string>
-    <string name="hw_text">Погода</string>
+    <string name="town">Город:</string>
+    <string name="weather_condition">На небе:</string>
+    <string name="temperature">Температура:</string>
+
+    <string name="moscow">Москва</string>
+    <string name="cloudy">Облачно</string>
 </resources>

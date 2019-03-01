@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_start_second_row">15dp</dimen>
+    <dimen name="table_row_padding_start">15dp</dimen>
+    <dimen name="table_row_padding_end">50dp</dimen>
+    <dimen name="table_row_padding_top">10dp</dimen>
+</resources>
