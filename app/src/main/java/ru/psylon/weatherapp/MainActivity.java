@@ -1,7 +1,7 @@
 package ru.psylon.weatherapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 
@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
         temp = findViewById(R.id.tempValueTextView);
         condition = findViewById(R.id.conditionValueTextView);
 
-        // так понимаю, что далее это будет интерактивом в зависимости от местоположения и т.д. а пока так
+        /* так понимаю, что далее это будет интерактивом в зависимости от местоположения и т.д.
+         * и это перейдет в onResume (или onStart?) а пока так
+         */
         townName.setText(getString(R.string.moscow));
         temp.setText("-20");
         condition.setText(getString(R.string.cloudy));
