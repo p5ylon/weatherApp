@@ -4,4 +4,5 @@
     <dimen name="table_row_padding_start">15dp</dimen>
     <dimen name="table_row_padding_end">50dp</dimen>
     <dimen name="table_row_padding_top">10dp</dimen>
+    <dimen name="town_layout_margin">20dp</dimen>
 </resources>

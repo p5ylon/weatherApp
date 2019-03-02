@@ -7,4 +7,7 @@
 
     <string name="moscow">Москва</string>
     <string name="cloudy">Облачно</string>
+    <string name="town_hint">Town</string>
+    <string name="town_name_hint">Town name</string>
+    <string name="wind_strong">Сила ветра</string>
 </resources>

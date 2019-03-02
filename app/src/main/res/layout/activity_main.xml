@@ -1,64 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:stretchColumns="1">
+    android:orientation="vertical">
 
-    <TableRow
-        android:paddingStart="@dimen/table_row_padding_start"
-        android:paddingEnd="@dimen/table_row_padding_end"
-        android:paddingTop="@dimen/table_row_padding_top">
+    <LinearLayout
+        android:layout_margin="@dimen/town_layout_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
 
         <TextView
-            android:id="@+id/townTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/town" />
+            android:text="@string/town_hint"/>
 
-        <TextView
-            android:id="@+id/townNameTextView"
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="0dp"
+            android:hint="@string/town_name_hint"
+            android:layout_weight="2"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_start_second_row"/>
-    </TableRow>
+            android:layout_weight="1">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <TableRow
-        android:paddingStart="@dimen/table_row_padding_start"
-        android:paddingEnd="@dimen/table_row_padding_end"
-        android:paddingTop="@dimen/table_row_padding_top">
-
-        <TextView
-            android:id="@+id/tempTextView"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wind_strong"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/temperature" />
+            android:layout_weight="1">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tempValueTextView"
-            android:layout_marginStart="@dimen/margin_start_second_row"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-
-    <TableRow
-        android:paddingStart="@dimen/table_row_padding_start"
-        android:paddingEnd="@dimen/table_row_padding_end"
-        android:paddingTop="@dimen/table_row_padding_top">
-
-        <TextView
-            android:id="@+id/conditionTextView"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wind_strong"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/weather_condition" />
+            android:layout_weight="1">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/conditionValueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_start_second_row"/>
-    </TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wind_strong"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 
-</TableLayout>
+
+
+
+</LinearLayout>
