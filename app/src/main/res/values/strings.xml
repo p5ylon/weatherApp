@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-    <string name="town">Town:</string>
-    <string name="weather_condition">Condition:</string>
-    <string name="temperature">Temperature:</string>
 
-    <string name="moscow">Moscow</string>
     <string name="cloudy">Cloudy</string>
     <string name="town_hint">Town</string>
     <string name="town_name_hint">Town name</string>
-    <string name="wind_strong">Сила ветра</string>
+    <string name="wind_strong">Wind Strong</string>
+    <string name="temperature_checkbox">Temperature</string>
+    <string name="button_show_text">Show</string>
+    <string name="humidity">Humidity</string>
+    <string name="hum_value">96%</string>
+    <string name="wind_value">3 m/s</string>
+    <string name="temp_value">20 C</string>
+    <string name="back_button">Back</string>
 </resources>

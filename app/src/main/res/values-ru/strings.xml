@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Приложение Погода</string>
-    <string name="town">Город:</string>
-    <string name="weather_condition">На небе:</string>
-    <string name="temperature">Температура:</string>
 
-    <string name="moscow">Москва</string>
     <string name="cloudy">Облачно</string>
     <string name="town_hint">Town</string>
     <string name="town_name_hint">Town name</string>
     <string name="wind_strong">Сила ветра</string>
+    <string name="temperature_checkbox">Температура</string>
+    <string name="button_show_text">Показать</string>
+    <string name="humidity">Влажность</string>
+    <string name="hum_value">96%</string>
+    <string name="wind_value">3 m/s</string>
+    <string name="temp_value">20 C</string>
+    <string name="back_button">Back</string>
 </resources>
