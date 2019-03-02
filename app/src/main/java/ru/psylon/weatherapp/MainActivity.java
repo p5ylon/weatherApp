@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         temp = findViewById(R.id.tempValueTextView);
         condition = findViewById(R.id.conditionValueTextView);
 
-        /* так понимаю, что далее это будет интерактивом в зависимости от местоположения и т.д.
+        /* так понимаю, что далее это будет подгружаться динамически в зависимости от местоположения и т.д.
          * и это перейдет в onResume (или onStart?) а пока так
          */
         townName.setText(getString(R.string.moscow));
