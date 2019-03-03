@@ -12,4 +12,6 @@
     <string name="wind_value">3 m/s</string>
     <string name="temp_value">20 C</string>
     <string name="back_button">Back</string>
+
+    <string name="main_settings">Settings</string>
 </resources>

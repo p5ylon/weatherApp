@@ -3,14 +3,15 @@
     <string name="app_name">Приложение Погода</string>
 
     <string name="cloudy">Облачно</string>
-    <string name="town_hint">Town</string>
-    <string name="town_name_hint">Town name</string>
+    <string name="town_hint">Город</string>
+    <string name="town_name_hint">Название города</string>
     <string name="wind_strong">Сила ветра</string>
     <string name="temperature_checkbox">Температура</string>
     <string name="button_show_text">Показать</string>
     <string name="humidity">Влажность</string>
     <string name="hum_value">96%</string>
-    <string name="wind_value">3 m/s</string>
+    <string name="wind_value">3 м/с</string>
     <string name="temp_value">20 C</string>
-    <string name="back_button">Back</string>
+    <string name="back_button">Назад</string>
+    <string name="main_settings">Настройки</string>
 </resources>

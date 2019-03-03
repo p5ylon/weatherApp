@@ -22,23 +22,22 @@ public class ShowTownWeatherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_town_weather);
 
         townTextView = findViewById(R.id.town_name_textView);
-        tempLayout = findViewById(R.id.temperature_linerLayout);
-        windLayout = findViewById(R.id.wind_strong_linerLayout);
-        humLayout = findViewById(R.id.humidity_linerLayout);
-
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-
             townTextView.setText(extras.getString(MainActivity.TOWN));
-            if (extras.getBoolean(MainActivity.TEMP)) tempLayout.setVisibility(View.VISIBLE);
-            if (extras.getBoolean(MainActivity.WIND)) windLayout.setVisibility(View.VISIBLE);
-            if (extras.getBoolean(MainActivity.HUMIDITY)) humLayout.setVisibility(View.VISIBLE);
+            if (extras.getBoolean(MainActivity.TEMP)) setVisibility(R.id.temperature_linerLayout);
+            if (extras.getBoolean(MainActivity.WIND)) setVisibility(R.id.wind_strong_linerLayout);
+            if (extras.getBoolean(MainActivity.HUMIDITY)) setVisibility(R.id.humidity_linerLayout);
         }
 
     }
 
     public void backToMain(View view) {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
+    private void setVisibility(int id) {
+        findViewById(id).setVisibility(View.VISIBLE);
     }
 }
