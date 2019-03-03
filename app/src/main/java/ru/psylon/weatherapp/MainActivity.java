@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,18 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void showWeatherDetails(View view) {
-        String townName = townNameEditText.getText().toString();
-        boolean isTempChecked = tempCheckBox.isChecked();
-        if (isTempChecked) Toast.makeText(this, "tempChecked", Toast.LENGTH_SHORT).show();
-        boolean isWindChecked = windCheckBox.isChecked();
-        boolean isHumChecked = huminityCheckBox.isChecked();
 
         Intent intent = new Intent(this, ShowTownWeatherActivity.class);
 
-        intent.putExtra(TOWN, townName);
-        intent.putExtra(WIND, isWindChecked);
-        intent.putExtra(TEMP, isTempChecked);
-        intent.putExtra(HUMIDITY, isHumChecked);
+        intent.putExtra(TOWN, townNameEditText.getText().toString());
+        intent.putExtra(WIND, windCheckBox.isChecked());
+        intent.putExtra(TEMP, tempCheckBox.isChecked());
+        intent.putExtra(HUMIDITY, huminityCheckBox.isChecked());
 
         startActivity(intent);
     }

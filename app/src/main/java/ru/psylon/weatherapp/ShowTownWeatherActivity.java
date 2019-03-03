@@ -26,16 +26,15 @@ public class ShowTownWeatherActivity extends AppCompatActivity {
         windLayout = findViewById(R.id.wind_strong_linerLayout);
         humLayout = findViewById(R.id.humidity_linerLayout);
 
-        String townName = getIntent().getExtras().getString(MainActivity.TOWN, "");
-        boolean isWindChecked = getIntent().getExtras().getBoolean(MainActivity.WIND, false);
-        boolean isTempChecked = getIntent().getExtras().getBoolean(MainActivity.TEMP, false);
-        boolean isHumChecked = getIntent().getExtras().getBoolean(MainActivity.HUMIDITY, false);
+        Bundle extras = getIntent().getExtras();
 
-        townTextView.setText(townName);
-        if (isTempChecked) tempLayout.setVisibility(View.VISIBLE);
-        if (isWindChecked) windLayout.setVisibility(View.VISIBLE);
-        if (isHumChecked) humLayout.setVisibility(View.VISIBLE);
+        if (extras != null) {
 
+            townTextView.setText(extras.getString(MainActivity.TOWN));
+            if (extras.getBoolean(MainActivity.TEMP)) tempLayout.setVisibility(View.VISIBLE);
+            if (extras.getBoolean(MainActivity.WIND)) windLayout.setVisibility(View.VISIBLE);
+            if (extras.getBoolean(MainActivity.HUMIDITY)) humLayout.setVisibility(View.VISIBLE);
+        }
 
     }
 
