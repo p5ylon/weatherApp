@@ -14,4 +14,8 @@
     <string name="temp_value">20 C</string>
     <string name="back_button">Назад</string>
     <string name="main_settings">Настройки</string>
+    <string name="settings_label">Settings</string>
+    <string name="theme_settings">Theme settings</string>
+    <string name="light_theme">Light theme</string>
+    <string name="dark_theme">Dark theme</string>
 </resources>
