@@ -8,10 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="DarkTheme" parent="Theme.AppCompat" >
-        <item name="colorAccent">@color/darkPrimary</item>
-        <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
-        <item name="colorPrimary">@color/darkPrimary</item>
+    <style name="image_margin">
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="weather_text">
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

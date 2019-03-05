@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void setNewTheme(int color) {
         switch (color) {
             case R.id.light_theme_radio:
-                sharedPreferences.edit().putInt(THEME, android.R.style.Theme_Black).apply();
+                sharedPreferences.edit().putInt(THEME, R.style.AppTheme).apply();
                 recreate();
                 break;
             case R.id.dark_theme_radio:

@@ -11,13 +11,13 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent
-"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3">
 
             <LinearLayout
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -30,6 +30,7 @@
                     android:weightSum="2">
 
                     <TextView
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -37,12 +38,14 @@
 
                     <TextView
                         android:id="@+id/town_name_textView"
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
                 </LinearLayout>
 
                 <LinearLayout
+
                     android:id="@+id/temperature_linerLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,6 +54,7 @@
                     android:weightSum="2">
 
                     <TextView
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -58,6 +62,7 @@
 
                     <TextView
                         android:id="@+id/temperature_textView"
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -73,6 +78,7 @@
                     android:weightSum="2">
 
                     <TextView
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -80,6 +86,7 @@
 
                     <TextView
                         android:id="@+id/wind_textView"
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -88,6 +95,7 @@
 
                 <LinearLayout
                     android:id="@+id/humidity_linerLayout"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/town_layout_margin"
@@ -95,6 +103,7 @@
                     android:weightSum="2">
 
                     <TextView
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -102,6 +111,7 @@
 
                     <TextView
                         android:id="@+id/humidity_textView"
+                        style="@style/weather_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -110,6 +120,7 @@
             </LinearLayout>
 
             <LinearLayout
+                style="@style/image_margin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
@@ -117,13 +128,14 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
                     android:src="@drawable/cloudy" />
 
             </LinearLayout>
         </LinearLayout>
 
         <Button
+            style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
