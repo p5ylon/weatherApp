@@ -10,6 +10,7 @@
 
     <style name="image_margin">
         <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingStart">15dp</item>
         <item name="android:layout_margin">5dp</item>
     </style>
 
