@@ -1,5 +1,6 @@
 package ru.psylon.weatherapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -63,6 +64,13 @@ public class CityInputInfoFragment extends Fragment {
         showWeatherButton = layout.findViewById(R.id.show_weather_button);
         citiesSpinner = layout.findViewById(R.id.cities_spinner);
 
+        showWeatherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showWeatherInfo();
+            }
+        });
+
         citiesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -98,6 +106,9 @@ public class CityInputInfoFragment extends Fragment {
         View weatherInfoFrag = getActivity().findViewById(R.id.weather_info_fragment);
 
         isInfoFragExists = weatherInfoFrag != null;
+        if (isInfoFragExists) getActivity()
+                .findViewById(R.id.show_weather_button)
+                .setVisibility(View.GONE);
 
         if (savedInstanceState != null) {
             parcel = savedInstanceState.getParcelable(PARCEL);
@@ -121,7 +132,7 @@ public class CityInputInfoFragment extends Fragment {
                 windCheckBox.isChecked(),
                 tempCheckBox.isChecked(),
                 humCheckBox.isChecked());
-        WeatherInfoFragment weatherInfo = WeatherInfoFragment.newInstance(parcel);
+        WeatherInfoFragment weatherInfo = WeatherInfoFragment.newInstance(parcel, isInfoFragExists);
         if (isInfoFragExists) {
             getFragmentManager()
                     .beginTransaction()
@@ -129,10 +140,10 @@ public class CityInputInfoFragment extends Fragment {
                     .commit();
 
         } else {
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.input_info_fragment, weatherInfo)
-                    .commit();
+
+            Intent intent = new Intent(getActivity(), WeatherInfoActivity.class);
+            intent.putExtra(PARCEL, parcel);
+            startActivity(intent);
         }
 
     }

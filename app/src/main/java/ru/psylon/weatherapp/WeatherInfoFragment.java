@@ -12,13 +12,16 @@ import android.widget.TextView;
 public class WeatherInfoFragment extends Fragment {
 
     private static final String PARCEL = "parcel";
+    private static final String LANDSCAPE = "landscape";
 
     private Parcel parcel;
+    private boolean isLandscape;
 
-    public static WeatherInfoFragment newInstance(Parcel parcel) {
+    public static WeatherInfoFragment newInstance(Parcel parcel, boolean isLandscape) {
         WeatherInfoFragment fragment = new WeatherInfoFragment();
         Bundle args = new Bundle();
         args.putParcelable(PARCEL, parcel);
+        args.putBoolean(LANDSCAPE, isLandscape);
         fragment.setArguments(args);
         return fragment;
     }
@@ -28,6 +31,7 @@ public class WeatherInfoFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             parcel = getArguments().getParcelable(PARCEL);
+            isLandscape = getArguments().getBoolean(LANDSCAPE);
         }
     }
 
@@ -38,6 +42,7 @@ public class WeatherInfoFragment extends Fragment {
         TextView notChosen = layout.findViewById(R.id.not_chosen);
         TextView townName = layout.findViewById(R.id.town_name_textView);
         LinearLayout weatherInfo = layout.findViewById(R.id.weather_info);
+        if (isLandscape) layout.findViewById(R.id.back_to_input_button).setVisibility(View.GONE);
 
         String chosenTown = parcel.getCityName();
         if (chosenTown != null) {
