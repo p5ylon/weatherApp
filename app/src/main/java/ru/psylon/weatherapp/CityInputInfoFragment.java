@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,12 @@ public class CityInputInfoFragment extends Fragment {
     private boolean isInfoFragExists;
     private Parcel parcel;
 
-    private Button showWeatherButton;
     private Spinner citiesSpinner;
     private CheckBox tempCheckBox;
     private CheckBox humCheckBox;
     private CheckBox windCheckBox;
+
+    private View selfView;
 
     public static CityInputInfoFragment newInstance(Parcel parcel) {
         CityInputInfoFragment fragment = new CityInputInfoFragment();
@@ -43,26 +45,33 @@ public class CityInputInfoFragment extends Fragment {
         return fragment;
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("+++++++", "oncreateView");
+
+        return inflater.inflate(R.layout.fragment_input_info, container, false);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             parcel = getArguments().getParcelable(PARCEL);
         } else {
+            // TODO: remove hardcode
             parcel = new Parcel("Moscow", false, false, false);
         }
 
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_input_info, container, false);
-        humCheckBox = layout.findViewById(R.id.humidity_checkBox);
-        tempCheckBox = layout.findViewById(R.id.temperature_checkBox);
-        windCheckBox = layout.findViewById(R.id.wind_strong_checkBox);
-        showWeatherButton = layout.findViewById(R.id.show_weather_button);
-        citiesSpinner = layout.findViewById(R.id.cities_spinner);
+
+    private void setViews(View view) {
+        humCheckBox = view.findViewById(R.id.humidity_checkBox);
+        tempCheckBox = view.findViewById(R.id.temperature_checkBox);
+        windCheckBox = view.findViewById(R.id.wind_strong_checkBox);
+        Button showWeatherButton = view.findViewById(R.id.show_weather_button);
+        citiesSpinner = view.findViewById(R.id.cities_spinner);
 
         showWeatherButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,21 +93,30 @@ public class CityInputInfoFragment extends Fragment {
 
             }
         });
+
         humCheckBox.setOnCheckedChangeListener(new OnCheckBoxSelectionChanged());
         tempCheckBox.setOnCheckedChangeListener(new OnCheckBoxSelectionChanged());
         windCheckBox.setOnCheckedChangeListener(new OnCheckBoxSelectionChanged());
 
-        if (savedInstanceState != null) {
-            parcel = savedInstanceState.getParcelable(PARCEL);
-            List<String> cities = Arrays.asList(getResources().getStringArray(R.array.cities));
-            citiesSpinner.setSelection(cities.indexOf(parcel.getCityName()));
-            humCheckBox.setSelected(parcel.isHumanityChecked());
-            tempCheckBox.setSelected(parcel.isTemperatureChecked());
-            windCheckBox.setSelected(parcel.isTemperatureChecked());
-        }
-        return layout;
+
     }
 
+    private void setValues(Bundle savedInstanceState) {
+        parcel = savedInstanceState.getParcelable(PARCEL);
+        List<String> cities = Arrays.asList(getResources().getStringArray(R.array.cities));
+        citiesSpinner.setSelection(cities.indexOf(parcel.getCityName()));
+        humCheckBox.setSelected(parcel.isHumanityChecked());
+        tempCheckBox.setSelected(parcel.isTemperatureChecked());
+        windCheckBox.setSelected(parcel.isTemperatureChecked());
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        selfView = view;
+
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -106,19 +124,20 @@ public class CityInputInfoFragment extends Fragment {
         View weatherInfoFrag = getActivity().findViewById(R.id.weather_info_fragment);
 
         isInfoFragExists = weatherInfoFrag != null;
-        if (isInfoFragExists) getActivity()
-                .findViewById(R.id.show_weather_button)
-                .setVisibility(View.GONE);
+
+        setViews(selfView);
+
+        if (isInfoFragExists) {
+            selfView.findViewById(R.id.show_weather_button).setVisibility(View.GONE);
+            showWeatherInfo();
+        }
 
         if (savedInstanceState != null) {
             parcel = savedInstanceState.getParcelable(PARCEL);
+            setValues(savedInstanceState);
         }
 
-        if (isInfoFragExists) {
-            showWeatherInfo();
-        }
     }
-
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -126,12 +145,7 @@ public class CityInputInfoFragment extends Fragment {
         outState.putParcelable(PARCEL, parcel);
     }
 
-
     private void showWeatherInfo() {
-        parcel = new Parcel(citiesSpinner.getSelectedItem().toString(),
-                windCheckBox.isChecked(),
-                tempCheckBox.isChecked(),
-                humCheckBox.isChecked());
         WeatherInfoFragment weatherInfo = WeatherInfoFragment.newInstance(parcel, isInfoFragExists);
         if (isInfoFragExists) {
             getFragmentManager()
