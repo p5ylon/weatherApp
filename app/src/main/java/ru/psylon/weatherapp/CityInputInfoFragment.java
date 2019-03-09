@@ -7,10 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class CityInputInfoFragment extends Fragment {
@@ -30,7 +34,7 @@ public class CityInputInfoFragment extends Fragment {
         CityInputInfoFragment fragment = new CityInputInfoFragment();
         Bundle args = new Bundle();
         if (parcel == null) {
-            parcel = new Parcel("Moscow", false, false, false);
+            parcel = new Parcel("", false, false, false);
         }
         args.putParcelable(PARCEL, parcel);
         fragment.setArguments(args);
@@ -43,6 +47,8 @@ public class CityInputInfoFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             parcel = getArguments().getParcelable(PARCEL);
+        } else {
+            parcel = new Parcel("Moscow", false, false, false);
         }
 
     }
@@ -57,13 +63,27 @@ public class CityInputInfoFragment extends Fragment {
         showWeatherButton = layout.findViewById(R.id.show_weather_button);
         citiesSpinner = layout.findViewById(R.id.cities_spinner);
 
+        citiesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String[] choice = getResources().getStringArray(R.array.cities);
+                parcel.setCityName(choice[position]);
+                if (isInfoFragExists) showWeatherInfo();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         humCheckBox.setOnCheckedChangeListener(new OnCheckBoxSelectionChanged());
         tempCheckBox.setOnCheckedChangeListener(new OnCheckBoxSelectionChanged());
         windCheckBox.setOnCheckedChangeListener(new OnCheckBoxSelectionChanged());
 
         if (savedInstanceState != null) {
             parcel = savedInstanceState.getParcelable(PARCEL);
-
+            List<String> cities = Arrays.asList(getResources().getStringArray(R.array.cities));
+            citiesSpinner.setSelection(cities.indexOf(parcel.getCityName()));
             humCheckBox.setSelected(parcel.isHumanityChecked());
             tempCheckBox.setSelected(parcel.isTemperatureChecked());
             windCheckBox.setSelected(parcel.isTemperatureChecked());
@@ -111,7 +131,7 @@ public class CityInputInfoFragment extends Fragment {
         } else {
             getFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.input_info_layout, weatherInfo)
+                    .replace(R.id.input_info_fragment, weatherInfo)
                     .commit();
         }
 
@@ -123,9 +143,6 @@ public class CityInputInfoFragment extends Fragment {
         parcel = null;
     }
 
-    public void setParcel(Parcel parcel) {
-        this.parcel = parcel;
-    }
 
     private class OnCheckBoxSelectionChanged implements CompoundButton.OnCheckedChangeListener {
 
@@ -134,11 +151,10 @@ public class CityInputInfoFragment extends Fragment {
             if (buttonView == humCheckBox) parcel.setHumanityChecked(isChecked);
             if (buttonView == windCheckBox) parcel.setWindPowerChecked(isChecked);
             if (buttonView == tempCheckBox) parcel.setTemperatureChecked(isChecked);
+
+            if (isInfoFragExists) showWeatherInfo();
         }
     }
 
-    public Parcel getParcel() {
-        return parcel;
-    }
 }
 
