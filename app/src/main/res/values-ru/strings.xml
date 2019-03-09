@@ -20,4 +20,10 @@
     <string name="dark_theme">Dark theme</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="town_not_chosen">Town not chosen</string>
+
+    <string-array name="cities">
+        <item>Москва</item>
+        <item>Санкт-Петербург</item>
+    </string-array>
 </resources>
