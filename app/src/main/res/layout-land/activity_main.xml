@@ -6,14 +6,14 @@
     android:weightSum="2"
     tools:context=".MainActivity">
 
-    <fragment
+    <LinearLayout
         android:id="@+id/input_info_fragment"
-        android:name="ru.psylon.weatherapp.CityInputInfoFragment"
+        android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent">
 
-    </fragment>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/weather_info_fragment"

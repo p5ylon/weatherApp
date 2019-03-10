@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -42,7 +43,16 @@ public class WeatherInfoFragment extends Fragment {
         TextView notChosen = layout.findViewById(R.id.not_chosen);
         TextView townName = layout.findViewById(R.id.town_name_textView);
         LinearLayout weatherInfo = layout.findViewById(R.id.weather_info);
-        if (isLandscape) layout.findViewById(R.id.back_to_input_button).setVisibility(View.GONE);
+        Button backButton = layout.findViewById(R.id.back_to_input_button);
+
+        if (isLandscape) backButton.setVisibility(View.GONE);
+        else backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStackImmediate();
+
+            }
+        });
 
         String chosenTown = parcel.getCityName();
         if (chosenTown != null) {
