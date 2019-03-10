@@ -70,6 +70,7 @@ public class CityInputInfoFragment extends Fragment {
         citiesRecycler.setLayoutManager(manager);
         CitiesRecyclerAdapter adapter = new CitiesRecyclerAdapter(getResources().getStringArray(R.array.cities));
         citiesRecycler.setAdapter(adapter);
+        //TODO: do smth with selection - change background - need wrapper?
         adapter.setOnCityClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
