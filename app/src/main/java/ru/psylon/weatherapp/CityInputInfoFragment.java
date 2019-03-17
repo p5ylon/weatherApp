@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,10 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ru.psylon.weatherapp.common.CityChangedObservable;
+import ru.psylon.weatherapp.inteface.Observer;
+import ru.psylon.weatherapp.model.CityCard;
 
 
-public class CityInputInfoFragment extends Fragment {
+public class CityInputInfoFragment extends Fragment implements Observer {
     public static final String TAG = CityInputInfoFragment.class.getSimpleName();
 
     private static final String PARCEL = "parcel";
@@ -29,6 +36,8 @@ public class CityInputInfoFragment extends Fragment {
     private CheckBox windCheckBox;
 
     private View selfView;
+
+    private FragmentManager fragmentManager;
 
     public static CityInputInfoFragment newInstance(Parcel parcel) {
         CityInputInfoFragment fragment = new CityInputInfoFragment();
@@ -55,7 +64,7 @@ public class CityInputInfoFragment extends Fragment {
         } else {
             parcel = new Parcel("", false, false, false);
         }
-
+        CityChangedObservable.subscribe(this);
     }
 
 
@@ -68,16 +77,15 @@ public class CityInputInfoFragment extends Fragment {
         citiesRecycler = view.findViewById(R.id.cities_recycler);
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         citiesRecycler.setLayoutManager(manager);
-        CitiesRecyclerAdapter adapter = new CitiesRecyclerAdapter(getResources().getStringArray(R.array.cities));
+
+        String[] cities = getResources().getStringArray(R.array.cities);
+        List<CityCard> cityCards = new ArrayList<>();
+        for (String s : cities)
+            cityCards.add(new CityCard(s));
+
+        CitiesRecyclerAdapter adapter = new CitiesRecyclerAdapter(cityCards, getContext());
         citiesRecycler.setAdapter(adapter);
         //TODO: do smth with selection - change background - need wrapper?
-        adapter.setOnCityClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                parcel.setCityName(((TextView) v).getText().toString());
-                if (isInfoFragExists) showWeatherInfo();
-            }
-        });
 
         showWeatherButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +110,9 @@ public class CityInputInfoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         selfView = view;
+        isInfoFragExists = view.findViewById(R.id.weather_info_fragment) != null;
+        fragmentManager = getFragmentManager();
+
     }
 
     @Override
@@ -131,18 +142,18 @@ public class CityInputInfoFragment extends Fragment {
 
     private void showWeatherInfo() {
         WeatherInfoFragment weatherInfo = WeatherInfoFragment.newInstance(parcel, isInfoFragExists);
-        if (isInfoFragExists) {
-            getFragmentManager()
+        if (isInfoFragExists && getActivity() != null) {
+            fragmentManager
                     .beginTransaction()
                     .replace(R.id.weather_info_fragment, weatherInfo)
-                    .commit();
+                    .commitAllowingStateLoss();
 
         } else {
-            getFragmentManager()
+            fragmentManager
                     .beginTransaction()
                     .addToBackStack(TAG)
                     .replace(R.id.input_info_fragment, weatherInfo)
-                    .commit();
+                    .commitAllowingStateLoss();
         }
     }
 
@@ -150,6 +161,17 @@ public class CityInputInfoFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         parcel = null;
+    }
+
+    @Override
+    public void update(CityCard currentCurd) {
+        if (currentCurd != null) {
+            if (parcel == null)
+                parcel = new Parcel("", windCheckBox.isChecked(), tempCheckBox.isChecked(), humCheckBox.isChecked());
+            parcel.setCityName(currentCurd.getCityName());
+
+            if (isInfoFragExists) showWeatherInfo();
+        }
     }
 
     private class OnCheckBoxSelectionChanged implements CompoundButton.OnCheckedChangeListener {

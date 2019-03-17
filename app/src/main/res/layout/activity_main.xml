@@ -7,11 +7,19 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/input_info_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/input_info_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
     </LinearLayout>
+
 
 </LinearLayout>
